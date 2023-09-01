@@ -36,6 +36,7 @@ const formSchema = z.object({
   colorId: z.string().min(1),
   sizeId: z.string().min(1),
   isFeatured: z.boolean().default(false).optional(),
+  isSale: z.boolean().default(false).optional(),
   isArchived: z.boolean().default(false).optional()
 });
 
@@ -78,6 +79,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
     colorId: '',
     sizeId: '',
     isFeatured: false,
+    isSale: false,
     isArchived: false,
   }
 
@@ -272,6 +274,29 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                     </FormLabel>
                     <FormDescription>
                       This product will appear on the home page
+                    </FormDescription>
+                  </div>
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="isSale"
+              render={({ field }) => (
+                <FormItem className="flex flex-row items-start space-x-3 space-y-0 rounded-md border p-4">
+                  <FormControl>
+                    <Checkbox
+                      checked={field.value}
+                      // @ts-ignore
+                      onCheckedChange={field.onChange}
+                    />
+                  </FormControl>
+                  <div className="space-y-1 leading-none">
+                    <FormLabel>
+                      On Sale
+                    </FormLabel>
+                    <FormDescription>
+                      This product will be on sale.
                     </FormDescription>
                   </div>
                 </FormItem>
